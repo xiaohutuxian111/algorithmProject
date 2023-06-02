@@ -6,6 +6,5 @@
 
 
 
-#TODO
 def random_quick_sort():
     pass
