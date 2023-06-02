@@ -5,6 +5,8 @@
 @Description:选择排序
 """
 import random
+
+
 from typing import List
 
 
@@ -25,3 +27,4 @@ def select_sort(lis: List) -> List:
 if __name__ == '__main__':
     lis = [random.randint(0, 100) for _ in range(10)]
     print(select_sort(lis))
+

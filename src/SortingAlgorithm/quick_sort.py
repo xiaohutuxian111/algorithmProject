@@ -1,7 +1,7 @@
 """
 @Author：stone
 @Time：2023/5/31 17:25
-@Description:
+@Descriptio:快排
 """
 import random
 
