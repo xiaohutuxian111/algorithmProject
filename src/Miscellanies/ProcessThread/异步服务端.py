@@ -9,17 +9,16 @@ import asyncio
 
 async def waiter(conn, loop):
     while True:
-        try:
+
             data = await loop.sock_recv(conn, 1024)
             if not data:
                 break
             await loop.sock_sendall(conn, data.upper())
-        except ConnectionResetError:
-            break
+
     conn.close()
 
 
-def main(ip, port):
+async def main(ip, port):
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     server.bind((ip, port))

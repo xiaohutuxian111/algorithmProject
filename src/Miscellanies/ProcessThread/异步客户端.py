@@ -13,11 +13,11 @@ class MyClient(object):
         self.port = port
         self.loop = asyncio.get_event_loop()
 
-    async def send(self):
+    async def recv(self):
         data = await self.loop.sock_recv(self.c, 1024)
         return data
 
-    async def recv(self, data):
+    async def send(self, data):
         await self.loop.sock_sendall(self.c, data.encode('utf-8'))
 
     async def __aenter__(self):
@@ -31,10 +31,11 @@ class MyClient(object):
 
 
 async def main():
-    async  with MyClient('', 8081) as f:
-        await   f.send('abc')
-        data = await f.recv()
-        print(data)
+    while True:
+        async  with MyClient('127.0.0.1', 8082) as f:
+            await   f.send('abc')
+            data = await f.recv()
+            print(data)
 
 
-asyncio.run(main('127.0.0.1', 8082))
+asyncio.run(main())
